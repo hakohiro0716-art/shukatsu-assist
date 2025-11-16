@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>就活アシスト</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>就活アシストツール</h1>
+    <p>面接質問 × 自己PR作成 × 面接官モード × 自己PRストック</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-button active" data-tab="qgen">① 面接質問ジェネ</button>
+    <button class="tab-button" data-tab="prgen">② 自己分析 → 自己PR</button>
+    <button class="tab-button" data-tab="ivmode">③ 面接官モード</button>
+    <button class="tab-button" data-tab="prstock">④ 自己PRストック</button>
+  </div>
+
+  <!-- ① 面接質問ジェネ -->
+  <section class="tab-content active" id="qgen">
+    <h2>面接質問ジェネレーター</h2>
+    <p>業界・職種・選考段階を選ぶと、基本質問／深掘り質問／逆質問を自動でまとめます。</p>
+
+    <label>業界</label>
+    <select id="industry">
+      <option>特に絞らない</option>
+      <option>メーカー</option>
+      <option>金融</option>
+      <option>商社</option>
+      <option>IT / Web</option>
+      <option>不動産</option>
+      <option>物流</option>
+      <option>小売 / サービス</option>
+    </select>
+
+    <label>職種</label>
+    <select id="jobType">
+      <option>総合職・その他</option>
+      <option>営業</option>
+      <option>企画</option>
+      <option>事務</option>
+      <option>マーケティング</option>
+      <option>エンジニア</option>
+    </select>
+
+    <label>選考段階</label>
+    <select id="stage">
+      <option>一次面接</option>
+      <option>二次面接</option>
+      <option>最終面接</option>
+    </select>
+
+    <button id="genQuestions">質問を生成</button>
+
+    <div id="questionsResult" class="result-box"></div>
+  </section>
+
+  <!-- ② 自己PR生成 -->
+  <section class="tab-content" id="prgen">
+    <h2>自己分析 → 自己PR 生成</h2>
+
+    <label>テーマ</label>
+    <select id="prCategory">
+      <option value="strength">強み</option>
+      <option value="effort">努力したこと</option>
+      <option value="leadership">リーダーシップ</option>
+      <option value="teamwork">チームワーク</option>
+      <option value="problem">課題解決</option>
+    </select>
+
+    <label>経験内容</label>
+    <textarea id="prExperience" placeholder="例：サークルの新歓企画で100人集客した..."></textarea>
+
+    <button id="genPR">自己PRを生成</button>
+
+    <div id="prResult" class="result-box"></div>
+
+    <button id="savePR">このPRをストックに保存</button>
+  </section>
+
+  <!-- ③ 面接官モード -->
+  <section class="tab-content" id="ivmode">
+    <h2>面接官モード（疑似AI）</h2>
+    <p>面接官役がランダムな質問を投げます。口調はランダム（丁寧 多め）です。</p>
+
+    <label>業界（雰囲気）</label>
+    <select id="ivIndustry">
+      <option>特に絞らない</option>
+      <option>金融</option>
+      <option>IT</option>
+      <option>メーカー</option>
+      <option>商社</option>
+    </select>
+
+    <label>職種（雰囲気）</label>
+    <select id="ivJob">
+      <option>総合職・その他</option>
+      <option>営業</option>
+      <option>企画</option>
+      <option>エンジニア</option>
+    </select>
+
+    <label>選考段階</label>
+    <select id="ivStage">
+      <option>一次面接</option>
+      <option>二次面接</option>
+      <option>最終面接</option>
+    </select>
+
+    <button id="startInterview">面接開始</button>
+    <button id="resetInterview">リセット</button>
+
+    <div id="interviewLog" class="log-box"></div>
+
+    <textarea id="interviewAnswer" placeholder="回答を入力..." disabled></textarea>
+
+    <button id="micBtn" disabled>🎤 音声入力</button>
+    <button id="sendInterviewAnswer" disabled>回答を送信</button>
+  </section>
+
+  <!-- ④ 自己PRストック -->
+  <section class="tab-content" id="prstock">
+    <h2>自己PRストック</h2>
+    <p>保存した自己PRを一覧表示し、エクスポートできます。</p>
+
+    <div id="prList"></div>
+
+    <h3>エクスポート</h3>
+    <button id="exportTxt">TXT形式</button>
+    <button id="exportJson">JSON形式</button>
+    <button id="exportZip">ZIP形式</button>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
